@@ -3,3 +3,4 @@ Here, we will put all the sources of information that we use during the implemen
 
 ## Resources
 - Practical Implementation of Arithmetic Coding: http://www.ittc.ku.edu/~jsv/Papers/HoV92.actech.pdf
+- Wikipedia page on Arithmetic Coding: https://en.wikipedia.org/wiki/Arithmetic_coding
