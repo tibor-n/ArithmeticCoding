@@ -1,12 +1,17 @@
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.Random;
 
 public class ArithmeticCoding {
     private static final MathContext PRECISION = new MathContext(100);
+    private static final Random random = new Random();
 
     public static void main(String[] args) {
-        // Define the input sequence
-        String input = "adcbadbcadabcbadcbdabacbadbacbdadadabdbccbadbababcbabccbacbdcabbcdbdcdbcbadbbcdaaabcbdcdccdadcbdabaa";
+        // Predefined input sequence
+        //String input = "adcbadbcadabcbadcbdabacbadbacbdadadabdbccbadbababcbabccbacbdcabbcdbdcdbcbadbbcdaaabcbdcdccdadcbdabaa";
+
+        // Random input sequence
+        String input = generateRandomString(100);
 
         // Initialize the lower bound, upper bound, and range
         BigDecimal lowerBound = BigDecimal.ZERO;
@@ -37,6 +42,14 @@ public class ArithmeticCoding {
         // Decode the encoded value
         String decodedInput = decode(code, input.length());
         System.out.println("Decoded input: " + decodedInput);
+
+        // Correctness check
+        if(input.equals(decodedInput)){
+            System.out.println("The input sequence and the decoded one are IDENTICAL!");
+        }
+        else {
+            System.out.println("The input sequence and the decoded one are NOT identical!");
+        }
     }
 
     // Get the probability of a symbol
@@ -124,6 +137,32 @@ public class ArithmeticCoding {
             return 'd';
         } else {
             throw new IllegalArgumentException("Invalid probability value: " + value);
+        }
+    }
+
+    // Methods below used to generate random strings for testing purposes
+    private static String generateRandomString(int length) {
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            int randomIndex = random.nextInt(4);
+            char randomChar = getRandomCharacter(randomIndex);
+            sb.append(randomChar);
+        }
+        return sb.toString();
+    }
+
+    private static char getRandomCharacter(int index) {
+        switch (index) {
+            case 0:
+                return 'a';
+            case 1:
+                return 'b';
+            case 2:
+                return 'c';
+            case 3:
+                return 'd';
+            default:
+                throw new IllegalArgumentException("Invalid index: " + index);
         }
     }
 }
